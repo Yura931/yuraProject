@@ -22,7 +22,7 @@ private MemberDao memberDao = new MemberDao();
 				throw new LoginFailException();
 			}
 			
-			return new User(m.getId(), m.getName(), m.getGrade());
+			return new User(m.getId(), m.getName(), m.getPassword(), m.getGrade());
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

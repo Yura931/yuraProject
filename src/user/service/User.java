@@ -2,11 +2,13 @@ package user.service;
 
 public class User {
 	private String id;
+	private String name;
 	private String password;
 	private String grade;
 	
-	public User(String id, String password, String grade) {
+	public User(String id, String name, String password, String grade) {
 		this.id = id;
+		this.name = name;
 		this.password = password;
 		this.grade = grade;
 	}
@@ -27,5 +29,11 @@ public class User {
 	}
 	public void setGrade(String grade) {
 		this.grade = grade;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 }
