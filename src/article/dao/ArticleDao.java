@@ -11,9 +11,55 @@ import java.util.List;
 
 import article.model.Article;
 import article.model.Writer;
+import article.service.ModifiedData;
 import jdbc.JdbcUtil;
 
 public class ArticleDao {
+	public void delete (Connection con, int no) throws SQLException {
+		String sql = "DELETE yura_article "
+				   + "WHERE article_no=?";
+				   
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setInt(1, no);
+			pstmt.executeUpdate();
+		}
+	}
+	
+	public Article selectById (Connection con, int no) throws SQLException {
+		String sql = "SELECT * FROM yura_article "
+				   + "WHERE article_no=?";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			
+			Article article = null;
+			
+		if (rs.next()) {
+			article = convertArticle1(rs);
+		}
+		return article;
+		} finally {
+			JdbcUtil.close(rs, pstmt);
+		}
+	}
+	
+	private Article convertArticle1(ResultSet rs) throws SQLException {
+		return new Article(rs.getInt("article_no"),
+					new Writer(
+							rs.getString("writer_id"),
+							rs.getString("writer_name")
+							),
+					rs.getString("title"),
+					rs.getString("content"),
+					rs.getTimestamp("regdate"),
+					rs.getTimestamp("moddate"),
+					rs.getInt("read_cnt")
+				);
+	}
 	public Article insert (Connection con, Article article ) throws SQLException {
 		String sql = "INSERT INTO yura_article "
 				   + "(writer_id, writer_name, "
@@ -118,8 +164,37 @@ public class ArticleDao {
 		}
 		return 0;
 		} finally {
-			JdbcUtil.close(con);
+			JdbcUtil.close(rs, stmt);
 		}
+	}
+
+	public void increaseReadCount(Connection con, int article_no) throws SQLException {
+		String sql = "UPDATE yura_article "
+				   + "SET read_cnt=read_cnt+1 "
+				   + "WHERE article_no=?";
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setInt(1, article_no);
+			pstmt.executeUpdate();
+		}
+		
+	}
+
+	public int update(Connection con, ModifiedData modifyData) throws SQLException {
+		String sql = "UPDATE yura_article "
+				   + "SET title=?, content=? "
+				   + "WHERE article_no=?";
+		
+		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
+		
+			pstmt.setString(1, modifyData.getTitle());
+			pstmt.setString(2, modifyData.getContent());
+			pstmt.setInt(3, modifyData.getArticle_no());
+			
+			int cnt = pstmt.executeUpdate();
+			
+			return cnt;
+		
+		}				
 	}
 	
 	

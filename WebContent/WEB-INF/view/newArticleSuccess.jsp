@@ -8,5 +8,6 @@
 </head>
 <body>
 작성되었습니다.
+<a href="list.do">목록</a>
 </body>
 </html>

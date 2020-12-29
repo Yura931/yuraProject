@@ -24,13 +24,14 @@
 		<tr>
 			<td>${article.article_no }</td>
 			<td>${article.writer.id }</td>
-			<td>${article.title }</td>
+			<td><a href="${root }/article/read.do?no=${article.article_no }">${article.title }</a></td>
 			<td>${article.regdate }</td>
 			<td>${article.read_cnt }</td>
 		</tr>	
 	</c:forEach>
 	</tbody>	
 </table>
+<a href="write.do">글 작성</a>
 
 </body>
 </html>

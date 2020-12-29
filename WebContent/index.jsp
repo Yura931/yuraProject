@@ -9,10 +9,14 @@
 </head>
 <body>
 
+
+
 <c:if test="${empty sessionScope.user }">
 <a href="${root }/join.do">회원가입</a>
 <br />
 <a href="${root }/login.do">로그인</a>
+<br />
+<a href="${root }/article/list.do">글 목록</a>
 </c:if>
 
 <c:if test="${not empty sessionScope.user }">
@@ -21,6 +25,8 @@
 	<a href="${root }/changePwd.do">암호변경</a>
 	<br />
 	<a href="${root }/delete.do">회원탈퇴</a>
+	<br />
+	<a href="${root }/article/list.do">글 목록</a>
 </c:if>
 </body>
 </html>
