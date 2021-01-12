@@ -1,5 +1,6 @@
 package article.command;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,7 +34,7 @@ public class WriteArticleHandler implements CommandHandler {
 		return FORM_VIEW;
 	}
 
-	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
+	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		Map<String, Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
 		
@@ -49,7 +50,9 @@ public class WriteArticleHandler implements CommandHandler {
 		int newArticleNo = writeSvc.write(writeReq);
 		req.setAttribute("newArticleNo", newArticleNo);
 		
-		return "newArticleSuccess";		
+		
+		res.sendRedirect(req.getContextPath() + "/article/list.do");
+		return null;	
 	}
 	
 	private WriteRequest createWriteRequest(User user, HttpServletRequest req) {

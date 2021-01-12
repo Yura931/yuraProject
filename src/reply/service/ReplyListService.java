@@ -9,19 +9,20 @@ import reply.dao.ReplyDao;
 import reply.model.Reply;
 
 public class ReplyListService {
-	ReplyDao dao = new ReplyDao();
-	private int size = 15;
+	private ReplyDao dao = new ReplyDao();
 	
-	public ReplyPage getReplyList (int articleNo, int pageNo) {
-		try (Connection con = ConnectionProvider.getConnection()) {
-		int total = dao.selectCount(con);	
-		List<Reply> reply = dao.select(con, articleNo, pageNo, size);
+	public List<Reply> getReplyList(int articleNum) {
+		Connection con = ConnectionProvider.getConnection();
 		
-		return new ReplyPage(total, pageNo, size, reply);
-		
+		List<Reply> list;
+		try {
+			list = dao.listReply(con, articleNum);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
+		
+		return list;
 	}
+	
 }

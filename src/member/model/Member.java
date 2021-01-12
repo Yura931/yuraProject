@@ -11,6 +11,21 @@ public class Member {
 	private String grade = "일반";
 	private Date regdate;
 	
+	public Member() {
+		
+	}
+		
+	public Member(String id, String name, String email) {
+		this.id = id;
+		this.name = name;
+		this.email = email;
+	}
+
+	public Member(String name, String email) {
+		this.name = name;
+		this.email = email;
+	}
+
 	public String getId() {
 		return id;
 	}

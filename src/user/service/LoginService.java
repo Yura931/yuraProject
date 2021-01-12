@@ -2,6 +2,7 @@ package user.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Map;
 
 import jdbc.ConnectionProvider;
 import member.dao.MemberDao;
@@ -22,7 +23,7 @@ private MemberDao memberDao = new MemberDao();
 				throw new LoginFailException();
 			}
 			
-			return new User(m.getId(), m.getName(), m.getPassword(), m.getGrade());
+			return new User(m.getId(), m.getName(), m.getPassword(), m.getGrade(), m.getBirth(), m.getEmail(), m.getRegdate());
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

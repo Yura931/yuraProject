@@ -44,7 +44,7 @@ public class LoginCheckFilter implements Filter {
 		if (session == null || session.getAttribute("user") == null) {
 			// 로그인 안되어 있으면
 			// 로그인 화면 redirect
-			response.sendRedirect(request.getContextPath() + "/login.do");
+			response.sendRedirect(request.getContextPath() + "/index.jsp");
 		} else {
 			//로그인 되어 있으면
 			chain.doFilter(request, response);

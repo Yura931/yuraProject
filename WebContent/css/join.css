@@ -1,0 +1,26 @@
+@charset "UTF-8";
+.btn_login {
+    font-size: 16px;
+    color: #fff; 
+    background-color: #000;
+    margin-left: 160px;
+    margin-top: 10px;
+}
+.btn_reset {
+	font-size: 16px;
+	color: #fff;
+	background-color: #000;
+	float: right;
+	margin-top: 10px;
+}
+.inner_join{
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    margin: -145px 0 0 -160px;
+}
+.join_tistory{
+        position: relative;
+        width: 320px;
+        margin: 0 auto;
+    }

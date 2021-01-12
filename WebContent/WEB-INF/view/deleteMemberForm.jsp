@@ -17,48 +17,68 @@
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <title>Insert title here</title>
 <style>
+table {
+	border: 1px solid lightgray;
+	border-collapse: collapse;
+}
+
+table th, td {
+	border-top: 1px solid lightgray;
+	border-bottom: 1px solid lightgray;
+	border-collapse: collapse;
+}
+
+th {
+	background: rgb(226, 226, 226);
+	width: 180px;
+	text-align: center;
+}
+
+.con {
+	border: none;
+}
+
+.con:focus {
+	outline: none;
+}
+
 .btn {
 	margin-top: 5px;
 	margin-right: 10px;
-	margin-left: 35%;
 	width: 60px;
 	height: 35px;
 	font-size: 15px;
 	background: rgb(226, 226, 226);
 	text-align: center;
 }
-.chanPwd {
-    position: absolute;
-    left: 55%;
-    top: 50%;
-    margin: -145px 0 0 -160px;
-}
-.box_find {
-    margin: 35px 0 0;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    background-color: #fff;
-    box-sizing: border-box;
-}
-table {
-	border: 1px solid lightgray;
-	border-collapse: collapse;
-}
 
+h4 {
+	text-align: center;
+}
 </style>
 </head>
-<body>
+<body> 
 	<u:navbar />
-<hr />
-	<div class="container">
-	<u:profile/>
-	<div class="chanPwd">
-		<div class="box-find">
-		비밀번호가 변경되었습니다. 
+	<hr />
+
+	<div class="container"> 
+		<u:profile />
+		<div class="row" style="padding: 6% 5% 0% 13%">
+			<div class="col-3 mb-2 pl-0"></div>
+			<form action="${root }/deleteMember.do" method="post">
+				<h4>회원 탈퇴</h4>
+				<table class="table mt-3">
+					<tr>
+						<th>비밀번호</th>
+					</tr>
+
+					<tr>
+						<td><input class="con" type="text" name="password" /></td>
+					</tr>
+				</table>
+				<input class="btn" type="submit" value="탈퇴" />
+			</form>
 		</div>
-		<a class="btn" href="${root }/index.jsp">홈</a>		
 	</div>
-	</div>
-	
 </body>
 </html>

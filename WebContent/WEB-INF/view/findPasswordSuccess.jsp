@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="u" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html>
@@ -27,7 +27,7 @@
     background-color: #000;
     text-align: center;
 }
-.inner_join {
+.find_pwd {
     position: absolute;
     left: 55%;
     top: 60%;
@@ -38,7 +38,7 @@ table {
 	border-collapse: collapse;
 }
 
-.box_login {
+.box_find {
     margin: 35px 0 0;
     border: 1px solid #ddd;
     border-radius: 3px;
@@ -50,11 +50,12 @@ table {
 <body>
 <u:navbar/>
 
-<div class="inner_join">
-	<div class="box-login">
-			${joinReq.name }님 회원가입 되셨습니다.
+<div class="find_pwd">
+	<div class="box-find">
+${findPwd.id } 님의 비밀번호는
+${findPwd.password } 입니다. 
 	</div>
-		<a class="btn" href="${root }/login.do">로그인 하러가기</a>		
+<a class="btn" href="${root }/index.jsp">HOME</a>
 </div>
 </body>
 </html>

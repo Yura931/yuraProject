@@ -90,6 +90,62 @@ public class MemberDao {
 		}
 		return member;				
 	}
+	
+	public Member selectFindId (Connection con, String name, String email) throws SQLException {
+		String sql = "SELECT member_id FROM yura_member "
+				   + "WHERE member_name=? "
+				   + "AND member_email=?";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Member member = new Member();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, email);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+			member.setId(rs.getString(1));			
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs, pstmt);
+		}
+		
+		return member;
+	}
+
+	public Member seletByPwd(Connection con, String id, String name, String email) {
+		String sql = "SELECT member_password "
+				   + "FROM yura_member "
+				   + "WHERE member_id=? "
+				   + "AND member_name=? "
+				   + "AND member_email=?";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Member member = new Member();
+		
+		try {
+		pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, id);
+		pstmt.setString(2, name);
+		pstmt.setString(3, email);
+		
+		rs = pstmt.executeQuery();
+		if (rs.next()) {
+			member.setPassword(rs.getString(1));
+		}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs, pstmt);
+		}
+			return member;
+	}
 }
 
 

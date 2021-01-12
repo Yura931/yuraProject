@@ -1,27 +1,19 @@
 package reply.model;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 public class Reply {
-	private int replyId;
+	private int id;
 	private String memberId;
-	private int articleNo;
+	private int articleNum;
 	private String body;
 	private Date regDate;
 	
-	public Reply(int replyId, String memberId, String body, Timestamp regDate) {
-		this.replyId = replyId;
-		this.memberId = memberId;
-		this.body = body;
-		this.regDate = regDate;
-		
+	public int getId() {
+		return id;
 	}
-	public int getReplyId() {
-		return replyId;
-	}
-	public void setReplyId(int replyId) {
-		this.replyId = replyId;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getMemberId() {
 		return memberId;
@@ -29,11 +21,11 @@ public class Reply {
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
-	public int getArticleNo() {
-		return articleNo;
+	public int getArticleNum() {
+		return articleNum;
 	}
-	public void setArticleNo(int articleNo) {
-		this.articleNo = articleNo;
+	public void setArticleNum(int articleNum) {
+		this.articleNum = articleNum;
 	}
 	public String getBody() {
 		return body;
@@ -47,6 +39,7 @@ public class Reply {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
-
 	
+	
+
 }

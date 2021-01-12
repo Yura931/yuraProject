@@ -1,13 +1,13 @@
 package member.command;
 
 import java.util.HashMap;
+
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import member.model.Member;
 import member.service.DeleteMemberService;
 import member.service.InvalidPasswordException;
 import member.service.MemberNotFoundException;
@@ -37,18 +37,10 @@ public class DeleteMemberHandler implements CommandHandler {
 		String password = req.getParameter("password");
 		
 		Map<String, Boolean> errors = new HashMap<>();
-		Member member = new Member();
-		
+		req.setAttribute("errors", errors);
+			
 		if (password == null || password.isEmpty()) {
 			errors.put("password", true);
-			return FORM_VIEW;
-		}
-		
-		if (!member.matchPassword(password)) {
-			errors.put("notMatchPw", true);
-		}
-		
-		if (!errors.isEmpty()) {
 			return FORM_VIEW;
 		}
 		
@@ -58,8 +50,8 @@ public class DeleteMemberHandler implements CommandHandler {
 		deleteMemberSvc.deleteMember(user, password);
 		session.invalidate();
 		
-		res.sendRedirect(req.getContextPath() + "/index.jsp");
-		return null;
+		
+		return "deleteMemberSuccess";
 		} catch (MemberNotFoundException e) {
 			res.sendError(HttpServletResponse.SC_BAD_REQUEST);
 			return null;

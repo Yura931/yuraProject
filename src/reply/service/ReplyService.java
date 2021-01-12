@@ -8,17 +8,17 @@ import reply.dao.ReplyDao;
 
 public class ReplyService {
 	private ReplyDao dao = new ReplyDao();
-	
-	public void add(String userId, int article_no, String body) {
-		Connection con;
-		con = ConnectionProvider.getConnection();
+
+	public void add(String userId, int articleNo, String body) {
+		Connection conn = ConnectionProvider.getConnection();
+		
 		try {
-			dao.insert(con, userId, article_no, body);
+			dao.insert(conn, userId, articleNo, body);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
-		
 	}
-
+	
+	
 }
